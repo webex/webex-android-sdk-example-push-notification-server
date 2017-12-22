@@ -1,4 +1,4 @@
-﻿# Overview
+# Overview
 
 [Cisco Spark Android SDK](https://developer.ciscospark.com/sdk-for-android.html) enables you to embed [Cisco Spark](https://www.ciscospark.com/) calling and meeting experience into your Android mobile application. The SDK provides APIs to make and receive audio/video calls. In order to receive audio/video calls, the user needs to be notified when someone is calling the user.
 
@@ -10,7 +10,7 @@ For more information about Google push notification, please see [Firebase Guides
 
 Assuming this sample Webook/Push Notification Server has been deployed on the public Internet, the following describes the webhooks and push notification workflow step by step.
 
-![Spark-AndroidSDK-APNS](https://github.com/ciscospark/spark-android-sdk-example-push-notification-server/blob/master/Spark-ANDROIDSDK-APNS.png)
+![Spark-AndroidSDK-APNS](https://github.com/ciscospark/spark-android-sdk-example-push-notification-server/blob/master/Spark-ANDROIDSDK-GFCM.png)
 
 1. Launch the Firebase Cloud Messaging (FCM) client application on Android, which will register to Google FCM automatically.
 
@@ -29,7 +29,7 @@ Assuming this sample Webook/Push Notification Server has been deployed on the pu
 	}
 	```
 
-4. After the user logs into Cisco Spark，use [Webhook API](https://ciscospark.github.io/spark-android-sdk) to create an webhook at Cisco Spark cloud. The target URL of the webhook must be the /webhook REST endpoint of this server. The URL has to be publicly accessible from the Internet.
+4. After the user logs into Cisco Spark，use [Webhook API](https://ciscospark.github.io/spark-android-sdk/com/ciscospark/androidsdk/webhook/WebhookClient.html) to create an webhook at Cisco Spark cloud. The target URL of the webhook must be the /webhook REST endpoint of this server. The URL has to be publicly accessible from the Internet.
 	```
 	spark.webhooks().create("Message Webhook", targetUrl, "messages", "all", null, null, new CompletionHandler<Webhook>() {
 	    @Override
@@ -56,7 +56,7 @@ Assuming this sample Webook/Push Notification Server has been deployed on the pu
 
 For more details about Step 1, 2, 7 and 9, please see the following detailed explanation.
 
-For more details about Step 3 and 6, please see Cisco Spark [Webhooks Explained](https://developer.ciscospark.com/webhooks-explained.html)
+For more details about Step 4 and 6, please see Cisco Spark [Webhooks Explained](https://developer.ciscospark.com/webhooks-explained.html)
 
 # How to get device token in Android App
 
