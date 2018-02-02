@@ -17,17 +17,6 @@ Assuming this sample Webook/Push Notification Server has been deployed on the pu
 2. Get device token from FCM via onTokenRefresh() callback.
 
 3. Register the device token returned by the FCM and the user Id of current user to the  Webhook/Push Notification Server. The Server stores these information locally in a database.
-	```
-	let paramaters: Parameters = [
-		"email": email,
-		"voipToken": voipToken,
-		"msgToken": msgToken,
-		"personId": personId
-	]
-	Alamofire.request("https://example.com/register", method: .post, parameters: paramaters, encoding: JSONEncoding.default).validate().response { res in
-		// ...
-	}
-	```
 
 4. After the user logs into Cisco Spark，use [Webhook API](https://ciscospark.github.io/spark-android-sdk/com/ciscospark/androidsdk/webhook/WebhookClient.html) to create an webhook at Cisco Spark cloud. The target URL of the webhook must be the /webhook REST endpoint of this server. The URL has to be publicly accessible from the Internet.
 	```
