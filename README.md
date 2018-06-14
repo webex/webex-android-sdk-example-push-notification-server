@@ -1,8 +1,8 @@
 # Overview
 
-[Cisco Spark Android SDK](https://developer.ciscospark.com/sdk-for-android.html) enables you to embed [Cisco Spark](https://www.ciscospark.com/) calling and meeting experience into your Android mobile application. The SDK provides APIs to make and receive audio/video calls. In order to receive audio/video calls, the user needs to be notified when someone is calling the user.
+[Cisco Webex Android SDK](https://developer.webex.com/sdk-for-android.html) enables you to embed [Cisco Webex](https://www.webex.com/) calling and meeting experience into your Android mobile application. The SDK provides APIs to make and receive audio/video calls. In order to receive audio/video calls, the user needs to be notified when someone is calling the user.
 
-This sample Webhook/Push Notification Server demonstrates how to write a server application to receive [Incoming Call Notification](https://developer.ciscospark.com/sdk-for-android.html) from Cisco Spark and use [Google Firebase Cloud Messaging (FCM)](https://firebase.google.com/docs/cloud-messaging/) to notify the mobile application.
+This sample Webhook/Push Notification Server demonstrates how to write a server application to receive [Incoming Call Notification](https://developer.webex.com/sdk-for-android.html) from Cisco Webex and use [Google Firebase Cloud Messaging (FCM)](https://firebase.google.com/docs/cloud-messaging/) to notify the mobile application.
 
 For more information about Google push notification, please see [Firebase Guides](https://firebase.google.com/docs/guides/).
 
@@ -10,7 +10,7 @@ For more information about Google push notification, please see [Firebase Guides
 
 Assuming this sample Webook/Push Notification Server has been deployed on the public Internet, the following describes the webhooks and push notification workflow step by step.
 
-![Spark-AndroidSDK-APNS](https://github.com/ciscospark/spark-android-sdk-example-push-notification-server/blob/master/Spark-ANDROIDSDK-GFCM.png)
+![Webex-AndroidSDK-APNS](https://github.com/webex/webex-android-sdk-example-push-notification-server/blob/master/Webex-ANDROIDSDK-GFCM.png)
 
 1. Launch the Firebase Cloud Messaging (FCM) client application on Android, which will register to Google FCM automatically.
 
@@ -18,9 +18,9 @@ Assuming this sample Webook/Push Notification Server has been deployed on the pu
 
 3. Register the device token returned by the FCM and the user Id of current user to the  Webhook/Push Notification Server. The Server stores these information locally in a database.
 
-4. After the user logs into Cisco Spark，use [Webhook API](https://ciscospark.github.io/spark-android-sdk/com/ciscospark/androidsdk/webhook/WebhookClient.html) to create an webhook at Cisco Spark cloud. The target URL of the webhook must be the /webhook REST endpoint of this server. The URL has to be publicly accessible from the Internet.
+4. After the user logs into Cisco Webex，use [Webhook API](https://webex.github.io/spark-android-sdk/com/ciscospark/androidsdk/webhook/WebhookClient.html) to create an webhook at Cisco Webex cloud. The target URL of the webhook must be the /webhook REST endpoint of this server. The URL has to be publicly accessible from the Internet.
 	```
-	spark.webhooks().create("Incoming Call Webhook", targetUrl, "callMemberships", "created", "state=notified&personId=me", null, new CompletionHandler<Webhook>() {
+	webex.webhooks().create("Incoming Call Webhook", targetUrl, "callMemberships", "created", "state=notified&personId=me", null, new CompletionHandler<Webhook>() {
 	    @Override
 	    public void onComplete(Result<Webhook> result) {
 		if (result.isSuccessful()) {
@@ -33,19 +33,19 @@ Assuming this sample Webook/Push Notification Server has been deployed on the pu
 	});
 	```
 
-5. The remote party makes a call via Cisco Spark.
+5. The remote party makes a call via Cisco Webex.
 
-6. Ciso Spark receives the call and triggers the webhook. The incoming call event is sent to the target URL, which should be /webhook REST endpoint of this Webhook/Push Notification server.
+6. Ciso Webex receives the call and triggers the webhook. The incoming call event is sent to the target URL, which should be /webhook REST endpoint of this Webhook/Push Notification server.
 
 7. The Webhook/Push Notification Server looks up the device token from the database by the user Id in the incoming call event, then sends the notification with the device token and incoming call information to the FCM.
 
 8. The FCM pushs notification to the Android device.
 
-9. Your Android application [gets the push notification](https://github.com/firebase/quickstart-android/blob/master/messaging/app/src/main/java/com/google/firebase/quickstart/fcm/MyFirebaseMessagingService.java) and uses the SDK API to accept the call from Spark Cloud.
+9. Your Android application [gets the push notification](https://github.com/firebase/quickstart-android/blob/master/messaging/app/src/main/java/com/google/firebase/quickstart/fcm/MyFirebaseMessagingService.java) and uses the SDK API to accept the call from Webex Cloud.
 
 For more details about Step 1, 2, 7 and 9, please see the following detailed explanation.
 
-For more details about Step 4 and 6, please see Cisco Spark [Webhooks Explained](https://developer.ciscospark.com/webhooks-explained.html)
+For more details about Step 4 and 6, please see Cisco Webex [Webhooks Explained](https://developer.webex.com/webhooks-explained.html)
 
 # How to get device token in Android App
 
