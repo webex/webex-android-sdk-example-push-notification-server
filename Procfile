@@ -1,0 +1,1 @@
+web: java -jar target/android-pns-example-1.0.jar
