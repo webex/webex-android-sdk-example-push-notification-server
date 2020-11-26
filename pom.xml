@@ -10,7 +10,7 @@
     <artifactId>spring-boot-starter-parent</artifactId>
     <version>1.5.2.RELEASE</version>
   </parent>
-  <name>androidsdk-pns-example</name>
+  <name>android-pns-example</name>
 
   <properties>
     <java.version>1.8</java.version>
