@@ -1,0 +1,3 @@
+Copy paste your Firebase service key file in this folder. Service key the Json file containing your firebase credentials obtained from Firebase Console -> Project Settings -> Service Accounts -> Generate new private key.
+
+In application.properties rename the text NAME_OF_YOUR_SERVICE_KEY.json with your service key json filename.
