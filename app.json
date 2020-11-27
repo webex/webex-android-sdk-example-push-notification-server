@@ -1,0 +1,5 @@
+{
+  "name": "Push notification server for Android FCM: Java/Heroku",
+  "description": "Simple push notification server java app, which can easily be deployed to Heroku.",
+  "addons": [ "heroku-postgresql" ]
+}
